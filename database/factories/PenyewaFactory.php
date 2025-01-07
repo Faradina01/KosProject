@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Kamar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,4 +27,6 @@ class PenyewaFactory extends Factory
             'status_penyewa' => $this->faker->randomElement(['Aktif', 'Selesai']),
         ];
     }
+
+
 }

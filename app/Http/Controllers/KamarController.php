@@ -2,64 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kamar;
+use App\Models\Kamar;
 use Illuminate\Http\Request;
 
 class KamarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $kamar = Kamar::all();
+        return view('kamar.index', compact('kamar'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('kamar.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kamar' => 'required|string|max:100|unique:kamar',
+            'jenis_kamar' => 'required|string|max:50',
+            'harga_kamar' => 'required|numeric',
+            'status_kamar' => 'required|in:Tersedia,Terisi',
+            'deskripsi_kamar' => 'nullable|string',
+        ]);
+
+        Kamar::create($request->all());
+
+        return redirect()->route('kamar.index')->with('success', 'Kamar berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(kamar $kamar)
+    public function edit($id)
     {
-        //
+        $kamar = Kamar::findOrFail($id);
+        return view('kamar.edit', compact('kamar'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(kamar $kamar)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_kamar' => 'required|string|max:100|unique:kamar,nama_kamar,' . $id . ',id_kamar',
+            'jenis_kamar' => 'required|string|max:50',
+            'harga_kamar' => 'required|numeric',
+            'status_kamar' => 'required|in:Tersedia,Terisi',
+            'deskripsi_kamar' => 'nullable|string',
+        ]);
+
+        $kamar = Kamar::findOrFail($id);
+        $kamar->update($request->all());
+
+        return redirect()->route('kamar.index')->with('success', 'Kamar berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, kamar $kamar)
+    public function destroy($id)
     {
-        //
-    }
+        $kamar = Kamar::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(kamar $kamar)
-    {
-        //
+        if ($kamar->penyewa->count() >= 1) {
+            flash('Data tidak bisa dihapus karena sudah terkait dengan data penyewa')->error();
+            return back();
+        }
+        $kamar->delete();
+
+        return redirect()->route('kamar.index')->with('success', 'Kamar berhasil dihapus.');
     }
 }

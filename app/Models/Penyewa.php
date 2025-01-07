@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penyewa extends Model
 {
-    /** @use HasFactory<\Database\Factories\PenyewaFactory> */
     use HasFactory;
 
-    protected $table = 'penyewas';
-
+    protected $table = 'penyewa'; // Nama tabel
+    protected $primaryKey = 'id_penyewa'; // Nama kolom primary key
+    public $incrementing = true; // Jika kolom primary key adalah auto-increment
     protected $fillable = [
         'nama_penyewa',
         'nomor_hp',
@@ -21,9 +21,8 @@ class Penyewa extends Model
         'id_kamar',
         'status_penyewa',
     ];
-
-    public function kamar()
+        public function kamar()
     {
-        return $this->belongsTo(Kamar::class, 'id_kamar');
+        return $this->belongsTo(Kamar::class, 'id_kamar', 'id_kamar');
     }
 }
