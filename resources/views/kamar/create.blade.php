@@ -1,5 +1,6 @@
 @extends('layouts.kos')
 @section('content')
+
 <div class="container">
     <h1>Tambah Kamar</h1>
     <form action="{{ route('kamar.store') }}" method="POST">

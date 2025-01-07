@@ -1,6 +1,7 @@
 @extends('layouts.kos')
 @section('content')
 <br><br><br>
+
 <div class="container">
     <h1>Tambah Penyewa</h1>
 

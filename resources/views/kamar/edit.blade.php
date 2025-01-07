@@ -1,6 +1,7 @@
 @extends('layouts.kos')
 @section('content')
 
+
 <div class="container">
     <h1>Edit Kamar</h1>
     <form action="{{ route('kamar.update', $kamar->id_kamar) }}" method="POST">

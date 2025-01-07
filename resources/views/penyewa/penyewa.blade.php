@@ -1,5 +1,6 @@
 @extends('layouts.kos')
 @section('content')
+
 <br><br>
 <div class="container mt-5">
     <h1 class="mb-4">Data Sewa</h1>
