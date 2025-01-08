@@ -39,5 +39,4 @@ class PemilikKosController extends Controller
         return redirect()->route('pemilik_kos.index')->with('success', 'Pemilik kos berhasil ditambahkan.');
     }
 
-    // Tambahkan metode lain seperti edit, update, dan destroy sesuai kebutuhan
 }

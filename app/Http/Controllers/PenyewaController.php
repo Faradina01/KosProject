@@ -15,7 +15,6 @@ class PenyewaController extends Controller
     }
 
 
-
     public function create()
     {
         $kamar = Kamar::all(); // Ambil semua data kamar
@@ -36,7 +35,7 @@ class PenyewaController extends Controller
 
 
         // Logika untuk menyimpan data penyewa
-        // Contoh:
+
         $penyewa = new Penyewa();
         $penyewa->nama_penyewa = $request->nama_penyewa;
         $penyewa->nomor_hp = $request->nomor_hp;
