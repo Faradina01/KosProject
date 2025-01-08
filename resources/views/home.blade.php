@@ -6,19 +6,19 @@
       <div class="row flex-lg-row-reverse align-items-center ">
 
         <div class="col-lg-6">
-          <img src="/kos/images/billboard.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
+          <img src="/kos/images/kos.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
             height="500" loading="lazy">
         </div>
 
         <div class="col-lg-6">
-          <h1 class=" text-capitalize  lh-1 my-3">Perfect way to buy and sell a home</h1>
-          <p class="lead">Diam vitae, nec mattis lectus quam pretium amet facilisis. Urna, massa aliqua dui
-            pellentesque. Ac, gravida in eget non amet eget purus non.</p>
+          <h1 class=" text-capitalize  lh-1 my-3">Kos Arshiya</h1>
+          <p class="lead">Selamat datang di Kos Arshiya, Kami hadir untuk memudahkan
+             Anda menemukan tempat tinggal yang nyaman, aman, dan sesuai kebutuhan.</p>
           <nav class="navbar navbar-expand-lg billboard-nav">
-            <div class="container billboard-search p-0">
+            {{-- <div class="container billboard-search p-0"> --}}
 
-              <div class="row billboard-row">
-                <div class="col-lg-3 billboard-select">
+              {{-- <div class="row billboard-row"> --}}
+                {{-- <div class="col-lg-3 billboard-select">
                   <select class="form-select mb-2 mb-lg-0" aria-label="Purpose">
                     <option selected>Purpose</option>
                     <option value="1">Buy</option>
@@ -27,9 +27,9 @@
                     <option value="4">Something else here</option>
 
                   </select>
-                </div>
-                <div class="col-lg-3 billboard-select">
-                  <select class="form-select mb-2 mb-lg-0" aria-label="Location">
+                </div> --}}
+                {{-- <div class="col-lg-3 billboard-select"> --}}
+                  {{-- <select class="form-select mb-2 mb-lg-0" aria-label="Location">
                     <option selected>Location</option>
                     <option value="1">Texas</option>
                     <option value="2">Miami</option>
@@ -37,8 +37,8 @@
                     <option value="4">New York</option>
                     <option value="5">Something else here</option>
                   </select>
-                </div>
-                <div class="col-lg-3 billboard-select">
+                </div> --}}
+                {{-- <div class="col-lg-3 billboard-select">
                   <select class="form-select mb-2 mb-lg-0" aria-label="Type">
                     <option selected>Type</option>
                     <option value="1">House</option>
@@ -48,12 +48,12 @@
                     <option value="5">Bungalow</option>
                     <option value="3">Something else here</option>
                   </select>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-3 billboard-btn">
+                {{-- <div class="col-lg-3 billboard-btn">
                   <button type="submit" class="btn btn-primary btn-lg billboard-search">Search</button>
                 </div>
-              </div>
+              </div> --}}
 
 
             </div>
@@ -64,7 +64,7 @@
   </section>
 
   <!-- Feature start  -->
-  <section id="feature">
+  {{-- <section id="feature">
     <div class="container py-5">
       <div class="row">
         <div class="section-header align-center mb-5">
@@ -96,10 +96,10 @@
 
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- Residence start  -->
-  <section id="residence">
+  {{-- <section id="residence">
     <div class="container  my-5 py-5">
       <h2 class="text-capitalize m-0 py-lg-5">Popular Residence</h2>
 
@@ -262,10 +262,10 @@
       </div>
 
     </div>
-  </section>
+  </section> --}}
 
   <!--About us start  -->
-  <section id="about-us">
+  {{-- <section id="about-us">
     <div class="container">
       <div class="row py-lg-5">
 
@@ -296,10 +296,10 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- Testimonial start  -->
-  <section id="testimonial">
+  {{-- <section id="testimonial">
     <div class="container my-5">
 
 
@@ -371,10 +371,10 @@
 
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- Help start  -->
-  <section id="help" class="py-5"
+  {{-- <section id="help" class="py-5"
     style="background: linear-gradient(270deg, #1A242F 0.01%, rgba(26, 36, 47, 0.00) 100%);">
     <div class="container-lg my-5">
 
@@ -399,10 +399,10 @@
 
       </div>
     </div>
-  </section>
+  </section> --}}
 
   <!-- Lets start  -->
-  <section id="start">
+  {{-- <section id="start">
     <div class="container my-5 py-5">
       <div class="row featurette py-lg-5 ">
         <div class="col-md-5 order-md-1 d-flex">
@@ -419,6 +419,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
+  <br><br><br><br><br><br><br><br><br><br><br>
 </body>
 

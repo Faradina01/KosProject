@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Rentiz - Real Estate Free Website Template</title>
+  <title> Kos Arshiya </title>
 
   <link rel="stylesheet" type="text/css" href="/kos/css/vendor.css">
 
