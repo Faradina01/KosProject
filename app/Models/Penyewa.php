@@ -21,8 +21,25 @@ class Penyewa extends Model
         'id_kamar',
         'status_penyewa',
     ];
-        public function kamar()
+    public function kamar()
     {
         return $this->belongsTo(Kamar::class, 'id_kamar', 'id_kamar');
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($penyewa) {
+            \App\Models\History::create([
+                'id_penyewa' => $penyewa->id_penyewa,
+                'nama_penyewa' => $penyewa->nama_penyewa,
+                'nomor_hp' => $penyewa->nomor_hp,
+                'alamat' => $penyewa->alamat,
+                'tanggal_masuk' => $penyewa->tanggal_masuk,
+                'tanggal_berakhir' => $penyewa->tanggal_berakhir,
+                'id_kamar' => $penyewa->id_kamar,
+                'status_penyewa' => $penyewa->status_penyewa,
+            ]);
+        });
+    }
+
 }

@@ -3,6 +3,10 @@
 <br><br><br>
 
 <div class="container">
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
     <h1>Tambah Penyewa</h1>
 
     <form action="{{ route('penyewa.store') }}" method="POST">
@@ -34,10 +38,7 @@
         </div>
         <div class="form-group">
             <label>Status Penyewa</label>
-            <select name="status_penyewa" class="form-control" required>
-                <option value="Aktif">Aktif</option>
-                <option value="Selesai">Selesai</option>
-            </select>
+            <input type="text" name="status_penyewa" value="Aktif" class="form-control" readonly>
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

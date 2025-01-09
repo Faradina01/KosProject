@@ -59,12 +59,14 @@ class KamarController extends Controller
     {
         $kamar = Kamar::findOrFail($id);
 
-        if ($kamar->penyewa->count() >= 1) {
-            flash('Data tidak bisa dihapus karena sudah terkait dengan data penyewa')->error();
-            return back();
+        // Cek apakah kamar sedang digunakan oleh penyewa
+        if ($kamar->penyewa()->count() >= 1) {
+            return redirect()->route('kamar.index')->with('error', 'Kamar tidak bisa dihapus karena sedang digunakan oleh penyewa.');
         }
+
         $kamar->delete();
 
         return redirect()->route('kamar.index')->with('success', 'Kamar berhasil dihapus.');
     }
+
 }

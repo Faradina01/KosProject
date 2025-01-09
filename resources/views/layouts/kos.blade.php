@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title> Kos Arshiya </title>
 
   <link rel="stylesheet" type="text/css" href="/kos/css/vendor.css">
@@ -29,6 +30,10 @@
   <script src="/kos/js/modernizr.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- CSS Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2" tabindex="0">
@@ -36,228 +41,107 @@
   <!-- nav bar start  -->
   <header id="nav" class="site-header position-fixed text-white bg-dark">
     <nav id="navbar-example2" class="navbar navbar-expand-lg py-2">
-
-      <div class="container ">
-
-        <a class="navbar-brand" href="/kos/./index.html"><img src="/kos/images/logo.png" alt="image"></a>
-
-
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="/kos/images/logo.png" alt="Logo"></a>
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation"><ion-icon
-            name="menu-outline" style="font-size: 30px;"></ion-icon></button>
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2"
-          aria-labelledby="offcanvasNavbar2Label">
+          data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+          <ion-icon name="menu-outline" style="font-size: 30px;"></ion-icon>
+        </button>
+        <div class="offcanvas offcanvas-end" id="offcanvasNavbar2" tabindex="-1">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-              aria-label="Close"></button>
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
           </div>
           <div class="offcanvas-body">
-            <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1 ">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('home') ? 'active' : '' }} me-md-4" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('penyewa') ? 'active' : '' }} me-md-4" href="/penyewa">Data Penyewa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('kamar') ? 'active' : '' }} me-md-4" href="/kamar">Data Kamar</a>
-                </li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('penyewa') ? 'active' : '' }}" href="/penyewa">Data Penyewa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('kamar') ? 'active' : '' }}" href="/kamar">Data Kamar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('history') ? 'active' : '' }}" href="/history">Data History</a>
+              </li>
             </ul>
-
-
-
-<!-- Button trigger modal -->
-<li class="nav-item">
-    <a class="btn-medium btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Log Out</a>
-</li>
-
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Log Out</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-black">
-                Apakah Anda yakin ingin keluar?
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Log Out</button>
-                </form>
-            </div>
+            <a class="btn btn-primary" href="{{ route('logout') }}">Log Out</a>
+          </div>
         </div>
-    </div>
-</div>
-
-
-
-
       </div>
     </nav>
-    <style>
-.flash-message {
-    padding: 15px;
-    margin: 80px 0 20px; /* Adjusted top margin */
-    border-radius: 5px;
-    font-size: 16px;
-    position: relative;
-    z-index: 1000; /* Ensure it appears above other elements */
-}
 
-
-        .flash-message.success {
-          background-color: #d4edda;
-          color: #155724;
-          border: 1px solid #c3e6cb;
-        }
-
-        .flash-message.error {
-
-          background-color: #f8d7da;
-          color: #721c24;
-          border: 1px solid #f5c6cb;
-        }
-
-        .flash-message.info {
-          background-color: #cce5ff;
-          color: #004085;
-          border: 1px solid #b8daff;
-        }
-
-        .flash-message.warning {
-          background-color: #fff3cd;
-          color: #856404;
-          border: 1px solid #ffeeba;
-        }
-
-        .flash-message .close {
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          cursor: pointer;
-          font-weight: bold;
-        }
-      </style>
   </header>
 
   <main class="content">
 
-
-    <div class="flash-messages">
-        @if(session('success'))
-            <div class="flash-message success">
-                {{ session('success') }}
-                <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="flash-message error">
-                {{ session('error') }}
-                <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        @endif
-
-        @if(session('info'))
-            <div class="flash-message info">
-                {{ session('info') }}
-                <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        @endif
-
-        @if(session('warning'))
-            <div class="flash-message warning">
-                {{ session('warning') }}
-                <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        @endif
     </div>
 
     @yield('content')
-    <main class="content">
-        @include('flash::message')
-    </main>
+  </main>
   </main>
 
   <!-- Footer start  -->
   <section id="footer">
     <div class="container footer-container">
-      <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
-
-        <div class=" col-md-4">
-          <h3><img src="/kos/images/logo.png" alt="image"></h3>
-          <p>Neque, vestibulum sed varius magna et at. Eu, adipiscing morbi augue.</p>
-          <i class="bi-facebook pe-4"></i>
-          <i class="bi-instagram pe-4"></i>
-          <i class="bi-twitter pe-4"></i>
-          <i class="bi-youtube pe-4"></i>
-        </div>
-
-        <div class="col-md-2 ">
-          <h5>Project</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Houses</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Rooms</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Flats</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Appartments</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-2 ">
-          <h5>Company</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">How we work ?</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Capital </a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Security </a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-2 ">
-          <h5>Movement</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Movement</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Support us</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Pricing</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-2 ">
-          <h5>Help</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Privacy </a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Condition</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Blog</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">FAQs</a></li>
-          </ul>
+      <footer class="footer text-white">
+        <div class="container py-5">
+          <div class="row">
+            <!-- Logo dan Deskripsi -->
+            <div class="col-md-4">
+              <img src="/kos/images/logo.png" alt="Kos Arshiya Logo" class="footer-logo-img mb-3">
+              <p>
+                Kos Arshiya menyediakan tempat tinggal nyaman dan aman. Kami membantu Anda menemukan kos ideal sesuai
+                kebutuhan Anda.
+              </p>
+              <div class="social-icons">
+                <a href="#" class="text-white me-3"><i class="bi-facebook"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi-instagram"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi-twitter"></i></a>
+                <a href="#" class="text-white"><i class="bi-youtube"></i></a>
+              </div>
+            </div>
+            <!-- Links -->
+            <div class="col-md-2">
+              <h5>Proyek</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Houses</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rooms</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Flats</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Apartments</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h5>Perusahaan</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Tentang Kami</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Cara Kerja</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Keamanan</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h5>Bantuan</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Privasi</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Ketentuan</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h5>Kontak</h5>
+              <p class="mb-1">Email: support@arshiyakos.com</p>
+              <p class="mb-1">Telp: +62 123 4567 890</p>
+              <p>Alamat: Jl. Kos Nyaman, No. 23, Bandung</p>
+            </div>
+          </div>
+          <div class="text-center mt-4 border-top pt-4">
+            <p>© 2023 Kos Arshiya. All rights reserved.</p>
+          </div>
         </div>
       </footer>
-    </div>
 
-
-
-    <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
-
-    <div class="container">
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 ">
-        <div class="col-md-8 d-flex align-items-center">
-          <p>© 2023 TemplatesJungle, Inc. All rights reserved.</p>
-
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <p>HTML template by: <a href="https://templatesjungle.com/" class="link-primary"
-              target="_blank">TemplatesJungle</a> <br> Distributed by: <a href="https://themewagon.com" class="link-primary"
-              target="_blank">ThemeWagon</a></p>
-
-        </div>
-
-      </footer>
     </div>
   </section>
 

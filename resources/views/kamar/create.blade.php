@@ -1,8 +1,21 @@
 @extends('layouts.kos')
 @section('content')
-
+<br><br><br><br>
 <div class="container">
     <h1>Tambah Kamar</h1>
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <form action="{{ route('kamar.store') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -19,16 +32,15 @@
         </div>
         <div class="form-group">
             <label>Status Kamar</label>
-            <select name="status_kamar" class="form-control" required>
-                <option value="Tersedia">Tersedia</option>
-                <option value="Terisi">Terisi</option>
-            </select>
+            <input type="text" name="status_kamar" value="Tersedia" class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Deskripsi Kamar</label>
             <textarea name="deskripsi_kamar" class="form-control"></textarea>
         </div>
+        <br>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
+    <br>
 </div>
 @endsection

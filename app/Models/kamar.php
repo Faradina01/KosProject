@@ -25,6 +25,7 @@ class Kamar extends Model
     {
         return $this->hasMany(Penyewa::class, 'id_kamar', 'id_kamar');
     }
+
 }
 
 

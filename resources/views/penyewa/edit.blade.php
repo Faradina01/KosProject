@@ -14,7 +14,8 @@
         </div>
     @endif
 
-    <div id="error-message" class="alert alert-danger" style="display: none; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+    <div id="error-message" class="alert alert-danger"
+        style="display: none; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
         Tanggal berakhir tidak boleh lebih kecil dari tanggal masuk.
     </div>
 
@@ -35,11 +36,13 @@
         </div>
         <div class="form-group">
             <label>Tanggal Masuk</label>
-            <input type="date" id="tanggal_masuk" name="tanggal_masuk" class="form-control" value="{{ $penyewa->tanggal_masuk }}" required>
+            <input type="date" id="tanggal_masuk" name="tanggal_masuk" class="form-control"
+                value="{{ $penyewa->tanggal_masuk }}" required>
         </div>
         <div class="form-group">
             <label>Tanggal Berakhir</label>
-            <input type="date" id="tanggal_berakhir" name="tanggal_berakhir" class="form-control" value="{{ $penyewa->tanggal_berakhir }}">
+            <input type="date" id="tanggal_berakhir" name="tanggal_berakhir" class="form-control"
+                value="{{ $penyewa->tanggal_berakhir }}">
         </div>
 
         <div class="form-group">
@@ -53,13 +56,9 @@
                 @endforeach
             </select>
         </div>
-
         <div class="form-group">
             <label>Status Penyewa</label>
-            <select name="status_penyewa" class="form-control" required>
-                <option value="Aktif" {{ $penyewa->status_penyewa == 'Aktif' ? 'selected' : '' }}>Aktif</option>
-                <option value="Selesai" {{ $penyewa->status_penyewa == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-            </select>
+            <input type="text" name="status_penyewa" value="Aktif" class="form-control" readonly>
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
